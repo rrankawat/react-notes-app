@@ -1,10 +1,16 @@
 import { useState } from 'react'
 
 const NoteForm = () => {
-  const [title, setTitle] = useState('')
-  const [priority, setPriority] = useState('medium')
-  const [category, setCategory] = useState('work')
-  const [description, setDescription] = useState('')
+  const [formData, setFormData] = useState({
+    title: '',
+    priority: 'medium',
+    category: 'work',
+    description: '',
+  })
+
+  const handleChange = e => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
 
   return (
     <form className='mb-6'>
@@ -15,8 +21,9 @@ const NoteForm = () => {
         <input
           type='text'
           className='w-full p-2 border rounded-lg'
-          value={title}
-          onChange={e => setTitle(e.target.value)}
+          name='title'
+          value={formData.title}
+          onChange={handleChange}
         />
       </div>
       <div className='mb-4'>
@@ -26,8 +33,9 @@ const NoteForm = () => {
         <select
           type='text'
           className='w-full p-2 border rounded-lg'
-          value={priority}
-          onChange={e => setPriority(e.target.value)}
+          name='priority'
+          value={formData.priority}
+          onChange={handleChange}
         >
           <option value='high'>🔴 High</option>
           <option value='medium'>🟡 Medium</option>
@@ -41,8 +49,9 @@ const NoteForm = () => {
         <select
           type='text'
           className='w-full p-2 border rounded-lg'
-          value={category}
-          onChange={e => setCategory(e.target.value)}
+          name='category'
+          value={formData.category}
+          onChange={handleChange}
         >
           <option value='work'>📁 Work</option>
           <option value='Personal'>🏠 Personal</option>
@@ -56,8 +65,9 @@ const NoteForm = () => {
         <textarea
           type='text'
           className='w-full p-2 border rounded-lg'
-          value={description}
-          onChange={e => setDescription(e.target.value)}
+          name='description'
+          value={formData.description}
+          onChange={handleChange}
         ></textarea>
       </div>
       <button className='w-full bg-purple-500 text-white py-2 rounded-lg cursor-pointer hover:bg-purple-600'>
